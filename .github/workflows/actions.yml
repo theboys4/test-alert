@@ -27,6 +27,10 @@ jobs:
           SOME_SECRET: ${{ secrets.SOME_SECRET }}
           TOK: ${{ secrets.TOK }}
           CHAT: ${{ secrets.CHAT }}
+          MOV: ${{ secrets.MOV }}
+          DATE: ${{ secrets.DATE }}
+          URL: ${{ secrets.URL }}
+          CINE_1: ${{ secrets.CINE_1 }}
         run: python main.py
           
       - name: commit files
