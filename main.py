@@ -26,6 +26,7 @@ except KeyError:
     #raise
 
 def telebot(botmsg):
+    logger.info(f"movie: {botmsg}")
     tok =os.environ["TOK"]
     chatId=os.environ["CHAT"]
     sendtxt='https://api.telegram.org/bot'+tok+'/sendMessage?chat_id='+chatId +'&parse_mode=MarkdownV2&text=' + botmsg
