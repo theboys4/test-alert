@@ -18,12 +18,7 @@ logger_file_handler.setFormatter(formatter)
 logger.addHandler(logger_file_handler)
 
 
-try:
-    SOME_SECRET = os.environ["SOME_SECRET"]
-except KeyError:
-    SOME_SECRET = "Token not available!"
-    #logger.info("Token not available!")
-    #raise
+
 
 def telebot(botmsg):
     logger.info(f"movie: {botmsg}")
@@ -31,10 +26,11 @@ def telebot(botmsg):
     chatId=os.environ["CHAT"]
     sendtxt='https://api.telegram.org/bot'+tok+'/sendMessage?chat_id='+chatId +'&parse_mode=MarkdownV2&text=' + botmsg
     res=requests.get(sendtxt)
+    logger.info(f"Token value: {res.status_code}")
     return res.json()
     
 if __name__ == "__main__":
-    logger.info(f"Token value: {SOME_SECRET}")
+    
     date=os.environ["DATE"]
     movie_name=os.environ["MOV"]
     cinemas=[os.environ["CINE_1"],os.environ["CINE_2"],os.environ["CINE_3"],os.environ["CINE_4"]]
