@@ -17,7 +17,7 @@ logger_file_handler.setFormatter(formatter)
 logger.addHandler(logger_file_handler)
 
 try:
-    SOME_SECRET = os.environ["SAM"]
+    SOME_SECRET = os.environ["SOME_SECRET"]
 except KeyError:
     SOME_SECRET = "Token not available!"
     #logger.info("Token not available!")
