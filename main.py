@@ -35,14 +35,15 @@ def telebot(botmsg):
 if __name__ == "__main__":
     logger.info(f"Token value: {SOME_SECRET}")
     date=os.environ["DATE"]
-    cinemas=os.environ["CINE_1"]
-    url= os.environ["URL"]+cinemas+'?fromdate='+date
     movie_name=os.environ["MOV"]
-    r = requests.get(url)
-    soup = BeautifulSoup(r.content, 'html.parser')
-    s = soup.find_all('div', class_='MovieSessionsListing_movieDetailsDivHeading__5ARu1')
-    for i in s:
-        if i.text==movie_name:
-            logger.info(f"movie: {i.text}")
-            telebot(movie_name)
-            break
+    cinemas=[os.environ["CINE_1"],os.environ["CINE_2"],os.environ["CINE_3"],os.environ["CINE_4"]]
+    for cini in cinemas:
+        url= os.environ["URL"]+cini+'?fromdate='+date
+        r = requests.get(url)
+        soup = BeautifulSoup(r.content, 'html.parser')
+        s = soup.find_all('div', class_='MovieSessionsListing_movieDetailsDivHeading__5ARu1')
+        for i in s:
+            if i.text==movie_name:
+                logger.info(f"movie: {i.text}")
+                telebot(movie_name+" --> "+cini)
+                break
