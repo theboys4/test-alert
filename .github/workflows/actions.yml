@@ -31,6 +31,9 @@ jobs:
           DATE: ${{ secrets.DATE }}
           URL: ${{ secrets.URL }}
           CINE_1: ${{ secrets.CINE_1 }}
+          CINE_2: ${{ secrets.CINE_2 }}
+          CINE_3: ${{ secrets.CINE_3 }}
+          CINE_4: ${{ secrets.CINE_4 }}
         run: python main.py
           
       - name: commit files
