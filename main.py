@@ -25,7 +25,13 @@ except KeyError:
     #logger.info("Token not available!")
     #raise
 
-
+def telebot(botmsg):
+    tok =os.environ["TOK"]
+    chatId=os.environ["CHAT"]
+    sendtxt='https://api.telegram.org/bot'+tok+'/sendMessage?chat_id='+chatId +'&parse_mode=MarkdownV2&text=' + botmsg
+    res=requests.get(sendtxt)
+    return res.json()
+    
 if __name__ == "__main__":
     logger.info(f"Token value: {SOME_SECRET}")
     date='2023-08-18'
@@ -38,4 +44,5 @@ if __name__ == "__main__":
     for i in s:
         if i.text==movie_name:
             logger.info(f"movie: {i.text}")
+            telebot(movie_name)
             break
