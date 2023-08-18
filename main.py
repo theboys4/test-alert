@@ -34,13 +34,14 @@ if __name__ == "__main__":
     date=os.environ["DATE"]
     movie_name=os.environ["MOV"]
     cinemas=[os.environ["CINE_1"],os.environ["CINE_2"],os.environ["CINE_3"],os.environ["CINE_4"]]
-    for cini in cinemas:
-        url= os.environ["URL"]+cini+'?fromdate='+date
+    theatre=["AERO","varadaraja","venkateswara","vettri"]
+    for c in range(len(cinemas)):
+        url= os.environ["URL"]+cinemas[c]+'?fromdate='+date
         r = requests.get(url)
         soup = BeautifulSoup(r.content, 'html.parser')
         s = soup.find_all('div', class_='MovieSessionsListing_movieDetailsDivHeading__5ARu1')
         for i in s:
             if i.text==movie_name:
                 logger.info(f"movie: {i.text}")
-                telebot(movie_name+" --> "+cini)
+                telebot(movie_name+" "+theatre[c])
                 break
