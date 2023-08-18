@@ -34,10 +34,10 @@ def telebot(botmsg):
     
 if __name__ == "__main__":
     logger.info(f"Token value: {SOME_SECRET}")
-    date='2023-08-18'
-    cinemas='pvr-aerohub-chennai-c/55990'
-    url= 'https://ticketnew.com/movies/chennai/'+cinemas+'?fromdate='+date
-    movie_name="Jailer"
+    date=os.environ["DATE"]
+    cinemas=os.environ["CINE_1"]
+    url= os.environ["URL"]+cinemas+'?fromdate='+date
+    movie_name=os.environ["MOV"]
     r = requests.get(url)
     soup = BeautifulSoup(r.content, 'html.parser')
     s = soup.find_all('div', class_='MovieSessionsListing_movieDetailsDivHeading__5ARu1')
