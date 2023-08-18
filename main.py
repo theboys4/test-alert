@@ -3,6 +3,7 @@ import logging.handlers
 import os
 
 import requests
+from bs4 import BeautifulSoup
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -16,6 +17,7 @@ formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(messag
 logger_file_handler.setFormatter(formatter)
 logger.addHandler(logger_file_handler)
 
+
 try:
     SOME_SECRET = os.environ["SOME_SECRET"]
 except KeyError:
@@ -26,3 +28,14 @@ except KeyError:
 
 if __name__ == "__main__":
     logger.info(f"Token value: {SOME_SECRET}")
+    date='2023-08-18'
+    cinemas='pvr-aerohub-chennai-c/55990'
+    url= 'https://ticketnew.com/movies/chennai/'+cinemas+'?fromdate='+date
+    movie_name="Jailer"
+    r = requests.get(url)
+    soup = BeautifulSoup(r.content, 'html.parser')
+    s = soup.find_all('div', class_='MovieSessionsListing_movieDetailsDivHeading__5ARu1')
+    for i in s:
+        if i.text==movie_name:
+            logger.info(f"movie: {i.text}")
+            break
