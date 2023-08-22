@@ -43,5 +43,6 @@ if __name__ == "__main__":
         for i in s:
             if i.text==movie_name:
                 logger.info(f"movie: {i.text}")
-                telebot(movie_name+" "+theatre[c])
-                break
+                if theatre[c]!="AERO":
+                    telebot(movie_name+" "+theatre[c])
+                    break
