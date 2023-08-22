@@ -30,7 +30,7 @@ def telebot(botmsg):
     return res.json()
     
 if __name__ == "__main__":
-    
+    pass
     date=os.environ["DATE"]
     movie_name=os.environ["MOV"]
     cinemas=[os.environ["CINE_1"],os.environ["CINE_2"],os.environ["CINE_3"],os.environ["CINE_4"]]
