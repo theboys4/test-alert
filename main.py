@@ -30,11 +30,11 @@ def telebot(botmsg):
     return res.json()
     
 if __name__ == "__main__":
-    exit()
+    
     date=os.environ["DATE"]
     movie_name=os.environ["MOV"]
     cinemas=[os.environ["CINE_1"],os.environ["CINE_2"],os.environ["CINE_3"],os.environ["CINE_4"]]
-    theatre=["AERO","varadaraja","venkateswara","vettri"]
+    theatre=["rohini","varadaraja","venkateswara","vettri"]
     for c in range(len(cinemas)):
         url= os.environ["URL"]+cinemas[c]+'?fromdate='+date
         r = requests.get(url)
@@ -43,6 +43,6 @@ if __name__ == "__main__":
         for i in s:
             if i.text==movie_name:
                 logger.info(f"movie: {i.text}")
-                if theatre[c]!="AERO":
-                    telebot(movie_name+" "+theatre[c])
-                    break
+                
+                telebot(movie_name+" "+theatre[c])
+                break
